@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Student" ALTER COLUMN "enrollment_date" SET DEFAULT CURRENT_TIMESTAMP;

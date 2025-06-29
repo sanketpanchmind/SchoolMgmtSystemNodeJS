@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model demo {
+  did       Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  uid       Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student    Student?
+  instructor Instructor?
+}
+
+model Student {
+  student_id      Int      @id @default(autoincrement())
+  uid             Int      @unique
+  student_name    String
+  phone           String
+  address         String
+  date_of_birth   DateTime
+  gender          String
+  emailId         String
+  password        String
+  enrollment_date DateTime @default(now())
+  courseId        Int
+  classId         Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  class  Class  @relation(fields: [classId], references: [class_id])
+  user   User   @relation(fields: [uid], references: [uid])
+  course Course @relation(fields: [courseId], references: [course_id])
+}
+
+model Instructor {
+  instructor_id   Int      @id @default(autoincrement())
+  uid             Int      @unique
+  instructor_name String
+  qualification   String
+  gender          String
+  experience      Decimal
+  phone           String
+  status          Status
+  current_salary  BigInt
+  email           String   @unique
+  password        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user    User    @relation(fields: [uid], references: [uid])
+  classes Class[]
+}
+
+model Course {
+  course_id   Int      @id @default(autoincrement())
+  course_name String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  students Student[]
+  classes  Class[]
+}
+
+model Class {
+  class_id   Int      @id @default(autoincrement())
+  class_name String
+  course_id  Int
+  instructor Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  course  Course     @relation(fields: [course_id], references: [course_id])
+  teacher Instructor @relation(fields: [instructor], references: [instructor_id])
+
+  Student Student[]
+}
+
+enum Role {
+  student
+  instructor
+  admin
+}
+
+enum Status {
+  active
+  resigned
+  pending
+}
