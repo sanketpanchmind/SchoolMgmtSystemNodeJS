@@ -4,6 +4,6 @@ import classController from "../controllers/class.controller";
 const router = Router();
 
 router.get('/getAllClasses', classController.getAllClass);
-router.get('/createClasses', classController.createClass);
+router.post('/createClasses', classController.createClass);
 
 export default router;

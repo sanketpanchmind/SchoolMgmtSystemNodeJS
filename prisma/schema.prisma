@@ -42,18 +42,19 @@ model Student {
   address         String
   date_of_birth   DateTime
   gender          String
+  age             Int
   emailId         String
   password        String
   enrollment_date DateTime @default(now())
-  courseId        Int
   classId         Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  class  Class  @relation(fields: [classId], references: [class_id])
-  user   User   @relation(fields: [uid], references: [uid])
-  course Course @relation(fields: [courseId], references: [course_id])
+  class           Class   @relation(fields: [classId], references: [class_id])
+  user            User    @relation(fields: [uid], references: [uid])
+  Course          Course? @relation(fields: [courseCourse_id], references: [course_id])
+  courseCourse_id Int?
 }
 
 model Instructor {
@@ -65,7 +66,7 @@ model Instructor {
   experience      Decimal
   phone           String
   status          Status
-  current_salary  BigInt
+  current_salary  String
   email           String   @unique
   password        String
   createdAt       DateTime @default(now())
@@ -76,28 +77,28 @@ model Instructor {
 }
 
 model Course {
-  course_id   Int      @id @default(autoincrement())
+  course_id   Int    @id @default(autoincrement())
+  class_id    Int
   course_name String
   description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   students Student[]
-  classes  Class[]
+  class    Class     @relation(fields: [class_id], references: [class_id])
 }
 
 model Class {
-  class_id   Int      @id @default(autoincrement())
-  class_name String
-  course_id  Int
-  instructor Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  course  Course     @relation(fields: [course_id], references: [course_id])
-  teacher Instructor @relation(fields: [instructor], references: [instructor_id])
+  class_id    Int        @id @default(autoincrement())
+  class_name  String
+  instructor  Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  instructors Instructor @relation(fields: [instructor], references: [instructor_id])
 
   Student Student[]
+  courses Course[]
 }
 
 enum Role {

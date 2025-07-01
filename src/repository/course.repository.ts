@@ -11,6 +11,7 @@ const createCourse = async (data: any) => {
     const newcourse = await prismaclient.course.create({
         data: {
             course_name: data.course_name,
+            class_id: data.class_id,
             description: data.description
         }
     })

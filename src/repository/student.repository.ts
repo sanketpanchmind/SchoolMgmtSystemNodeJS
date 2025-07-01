@@ -16,16 +16,18 @@ const regsiterStudent = async (data: any) => {
             address: data.address,
             date_of_birth: data.date_of_birth,
             gender: data.gender,
+            age: data.age,
             enrollment_date: data.enrollment_date,
             emailId: data.emailId,
             password: data.password,
-            course: { connect: { course_id: data.course_id } },
             user: {
                 create: {
                     email: data.emailId, password: data.password, role: 'student'
                 }
-            }
-        }
+            },
+            class: { connect: { class_id: data.class_id } }
+        },
+
     })
     return registerStud
 }
