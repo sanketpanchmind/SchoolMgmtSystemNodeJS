@@ -24,4 +24,28 @@ const createCourses = async (req: Request, res: Response) => {
     }
 };
 
-export default { getAllCourses, createCourses }
+const deleteCoursebyId = async (req: Request, res: Response) => {
+
+    const course_id = req.params.course_id;
+
+    try {
+        // if (!course_id) {
+        //     return res.status(400).json({ message: 'Course ID is required in the URL.' });
+        // }
+        // else {
+        console.log("delete---", course_id);
+
+        const deletedCourse = await courseService.deleteCourse(course_id);
+        console.log("deleleted course ---", deletedCourse);
+        res.status(200).json({ message: "Record Deleted" });
+        return;
+        // }
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+
+}
+
+export default { getAllCourses, createCourses, deleteCoursebyId }

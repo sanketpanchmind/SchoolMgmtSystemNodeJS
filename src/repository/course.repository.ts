@@ -18,6 +18,11 @@ const createCourse = async (data: any) => {
     return newcourse;
 }
 
+const deleteCoursebyId = async (course_id: any) => {
+    return await prismaclient.course.delete({
+        where: { course_id: course_id }
+    })
+}
 
 
-export default { getAllCourses, createCourse }
+export default { getAllCourses, createCourse, deleteCoursebyId }
