@@ -5,6 +5,6 @@ const router = Router();
 
 router.get('/getAllCourses', courseController.getAllCourses);
 router.post('/createCourse', courseController.createCourses);
-router.delete('/deleteCourse/:id', courseController.deleteCoursebyId);
+router.delete('/deleteCourse', courseController.deleteCoursebyId);
 
 export default router;

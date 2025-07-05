@@ -26,8 +26,10 @@ const createCourses = async (req: Request, res: Response) => {
 
 const deleteCoursebyId = async (req: Request, res: Response) => {
 
-    const course_id = req.params.course_id;
-
+    const course_id = Number(req.query.course_id);
+    // if (!course_id || isNaN(course_id)) {
+    //     return res.status(400).json({ message: 'Course ID is required as query parameter.' });
+    // }
     try {
         // if (!course_id) {
         //     return res.status(400).json({ message: 'Course ID is required in the URL.' });
