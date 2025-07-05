@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "School Management System API",
+    "version": "1.0.0",
+    "description": "API Documentation for School Management System"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/studentapi/getAllStudents": {
+      "get": {
+        "summary": "Get all students",
+        "responses": {
+          "200": {
+            "description": "List of students"
+          }
+        }
+      }
+    },
+    "/studentapi/registerStudent": {
+      "post": {
+        "summary": "Register a new student",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "student",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "student_name": { "type": "string" },
+                "phone": { "type": "string" },
+                "address": { "type": "string" },
+                "date_of_birth": { "type": "string", "format": "date" },
+                "gender": { "type": "string" },
+                "age": { "type": "integer" },
+                "enrollment_date": { "type": "string", "format": "date" },
+                "emailId": { "type": "string" },
+                "password": { "type": "string" },
+                "class_id": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Student registered successfully" }
+        }
+      }
+    },
+    "/studentapi/deleteStudentbyId": {
+      "delete": {
+        "summary": "Delete a student by ID",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student deleted successfully" }
+        }
+      }
+    },
+    "/studentapi/updateStudentbyId": {
+      "put": {
+        "summary": "Update a student by ID",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "student",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "student_name": { "type": "string" },
+                "phone": { "type": "string" },
+                "address": { "type": "string" },
+                "date_of_birth": { "type": "string", "format": "date" },
+                "gender": { "type": "string" },
+                "age": { "type": "integer" },
+                "enrollment_date": { "type": "string", "format": "date" },
+                "emailId": { "type": "string" },
+                "password": { "type": "string" },
+                "class_id": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student updated successfully" }
+        }
+      }
+    }
+  }
+}
