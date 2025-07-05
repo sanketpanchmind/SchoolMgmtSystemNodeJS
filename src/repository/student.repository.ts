@@ -40,4 +40,31 @@ const deleteStudentbyId = async (student_id: any) => {
     })
 }
 
-export default { getAllStudent, regsiterStudent, deleteStudentbyId }
+const updateStudentbyId = async (data: any) => {
+
+    const updatedStudent = await prismaclient.student.update({
+        where: {
+            student_id: data.student_id,
+        },
+        data: {
+            student_name: data.student_name,
+            phone: data.phone,
+            address: data.address,
+            date_of_birth: data.date_of_birth,
+            gender: data.gender,
+            age: data.age,
+            enrollment_date: data.enrollment_date,
+            emailId: data.emailId,
+            password: data.password,
+            user: {
+                update: {
+                    email: data.emailId, password: data.password, role: 'student'
+                }
+            },
+            class: { connect: { class_id: data.class_id } }
+        },
+    })
+    return updatedStudent;
+}
+
+export default { getAllStudent, regsiterStudent, deleteStudentbyId, updateStudentbyId }

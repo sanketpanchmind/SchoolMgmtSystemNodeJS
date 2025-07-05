@@ -42,4 +42,23 @@ const deleteStudentsbyId = async (req: Request, res: Response) => {
     }
 }
 
-export default { getAllStudents, registerNewStudent, deleteStudentsbyId }
+const updateStudent = async (req: Request, res: Response) => {
+
+    const student_id = Number(req.query.student_id);
+    const updatedstudentbody = req.body;
+
+    try {
+        const updatedData = { student_id, ...updatedstudentbody };
+        console.log("updated student --", updatedData);
+        const result = await studentService.updateStudentbyId(updatedData);
+        res.status(200).json({ message: "Student Updated Successfully", updatedStudent: result });
+        return;
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).json({ message: e });
+        return;
+    }
+}
+
+export default { getAllStudents, registerNewStudent, deleteStudentsbyId, updateStudent }
