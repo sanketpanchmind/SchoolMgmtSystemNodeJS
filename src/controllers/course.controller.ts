@@ -1,6 +1,6 @@
 import courseService from "../services/course.service";
 import { Request, Response } from "express";
-
+import zodSchema from '../zodSchema'
 
 const getAllCourses = async (req: Request, res: Response) => {
     try {
@@ -14,12 +14,16 @@ const getAllCourses = async (req: Request, res: Response) => {
 };
 const createCourses = async (req: Request, res: Response) => {
     try {
-        const data = req.body;
-        const newCourse = await courseService.newCourse(data);
+        const data = zodSchema.createCourseSchema.safeParse(req.body);
+        console.log("Parsed values ---", data)
+        // const data = req.body;
+        const newCourse = await courseService.newCourse(data.data);
+        console.log(newCourse);
         res.status(201).json(newCourse);
         return;
     } catch (error: any) {
         res.status(500).json({ message: "Error creating course", error: error.message || error });
+        console.log(error);
         return;
     }
 };
