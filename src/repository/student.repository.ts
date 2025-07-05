@@ -14,7 +14,7 @@ const regsiterStudent = async (data: any) => {
             student_name: data.student_name,
             phone: data.phone,
             address: data.address,
-            date_of_birth: data.date_of_birth,
+            date_of_birth: data.date_of_birth + 'T00:00:00.000Z',
             gender: data.gender,
             age: data.age,
             enrollment_date: data.enrollment_date,
