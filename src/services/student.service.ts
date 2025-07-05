@@ -17,4 +17,8 @@ const registerStudentData = async (data: any) => {
     return await studentRepository.regsiterStudent(updatedData);
 };
 
-export default { getAllStudentData, registerStudentData };
+const deleteStudent = async (student_id: any) => {
+    return await studentRepository.deleteStudentbyId(student_id);
+}
+
+export default { getAllStudentData, registerStudentData, deleteStudent };

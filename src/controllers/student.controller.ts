@@ -25,4 +25,21 @@ const registerNewStudent = async (req: Request, res: Response) => {
     }
 }
 
-export default { getAllStudents, registerNewStudent }
+const deleteStudentsbyId = async (req: Request, res: Response) => {
+    const data = Number(req.query.student_id);
+    try {
+        console.log("student to be deleted - ", data);
+
+        const result = await studentService.deleteStudent(data);
+        console.log("deleted ---", result);
+        res.status(200).json(result);
+        return;
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).json({ message: e });
+        return;
+    }
+}
+
+export default { getAllStudents, registerNewStudent, deleteStudentsbyId }

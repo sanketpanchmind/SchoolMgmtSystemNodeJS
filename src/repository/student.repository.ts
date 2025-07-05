@@ -32,4 +32,12 @@ const regsiterStudent = async (data: any) => {
     return registerStud
 }
 
-export default { getAllStudent, regsiterStudent }
+const deleteStudentbyId = async (student_id: any) => {
+    return await prismaclient.student.delete({
+        where: {
+            student_id: student_id
+        }
+    })
+}
+
+export default { getAllStudent, regsiterStudent, deleteStudentbyId }
