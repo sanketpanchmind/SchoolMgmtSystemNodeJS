@@ -13,9 +13,7 @@
       "get": {
         "summary": "Get all students",
         "responses": {
-          "200": {
-            "description": "List of students"
-          }
+          "200": { "description": "List of students" }
         }
       }
     },
@@ -98,6 +96,182 @@
         ],
         "responses": {
           "200": { "description": "Student updated successfully" }
+        }
+      }
+    },
+    "/instructorapi/getInstructor": {
+      "get": {
+        "summary": "Get All Instructors",
+        "responses": {
+          "200": { "description": "List of all instructors" }
+        }
+      }
+    },
+    "/instructorapi/createInstructor": {
+      "post": {
+        "summary": "Create a New Instructor",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "instructor",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "instructor_name": { "type": "string" },
+                "qualification": { "type": "string" },
+                "gender": { "type": "string" },
+                "experience": { "type": "number" },
+                "phone": { "type": "string" },
+                "status": { "type": "string" },
+                "current_salary": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              },
+              "required": [
+                "instructor_name",
+                "qualification",
+                "gender",
+                "experience",
+                "phone",
+                "status",
+                "current_salary",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Instructor created successfully" }
+        }
+      }
+    },
+    "/instructorapi/deleteInstructor": {
+      "delete": {
+        "summary": "Delete an Instructor",
+        "parameters": [
+          {
+            "name": "instructor_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Instructor deleted successfully" }
+        }
+      }
+    },
+    "/instructorapi/updateInstructor": {
+      "put": {
+        "summary": "Update an Instructor",
+        "parameters": [
+          {
+            "name": "instructor_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "instructor",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "instructor_name": { "type": "string" },
+                "qualification": { "type": "string" },
+                "gender": { "type": "string" },
+                "experience": { "type": "number" },
+                "phone": { "type": "string" },
+                "status": { "type": "string" },
+                "current_salary": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Instructor updated successfully" }
+        }
+      }
+    },
+    "/courseapi/getAllCourses": {
+      "get": {
+        "summary": "Get All Courses",
+        "responses": {
+          "200": { "description": "List of all courses" }
+        }
+      }
+    },
+    "/courseapi/createCourse": {
+      "post": {
+        "summary": "Create a New Course",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "course",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "course_name": { "type": "string" },
+                "description": { "type": "string" },
+                "class_id": { "type": "integer" }
+              },
+              "required": ["course_name", "description", "class_id"]
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Course created successfully" }
+        }
+      }
+    },
+    "/courseapi/deleteCourse": {
+      "delete": {
+        "summary": "Delete a Course",
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Course deleted successfully" }
+        }
+      }
+    },
+    "/courseapi/updateCourse": {
+      "put": {
+        "summary": "Update a Course",
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "course",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "course_name": { "type": "string" },
+                "description": { "type": "string" },
+                "class_id": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Course updated successfully" }
         }
       }
     }
