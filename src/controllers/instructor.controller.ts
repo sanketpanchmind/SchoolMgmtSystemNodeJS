@@ -49,5 +49,43 @@ const createNewInstructor = async (req: Request, res: Response) => {
     }
 }
 
+const deleteInstructorbyId = async (req: Request, res: Response) => {
 
-export default { getAllInstructors, createNewInstructor }
+    const inst_id = Number(req.query.instructor_id);
+
+    try {
+        const result = await instructorService.deleteInstructor(inst_id);
+        console.log(result);
+        res.status(200).json({ message: "Record Deleted Successfully..", inst_id: result });
+        return;
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400);
+        return;
+    }
+
+}
+
+const updateInstructorbyId = async (req: Request, res: Response) => {
+
+    const instructor_id = Number(req.query.instructor_id);
+    const updateddata = req.body;
+
+    try {
+        const newdata = { instructor_id, ...updateddata };
+
+        const result = await instructorService.updateInstructor(newdata);
+        console.log(result);
+        res.status(200).json({ message: "Record updated Successfully.", instructor_id: newdata });
+        return;
+    }
+    catch (e) {
+        res.status(400).json(e);
+        console.log(e);
+        return;
+    }
+}
+
+
+export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId }

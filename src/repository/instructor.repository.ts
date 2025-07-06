@@ -32,5 +32,40 @@ const createIntructors = async (data: any) => {
     return newinstructor;
 }
 
+const deleteInstructor = async (instructor_id: any) => {
 
-export default { getAllIntructors, createIntructors }
+    return await prismaclient.instructor.delete({
+        where: {
+            instructor_id: instructor_id
+        }
+    })
+}
+
+const updateInstructor = async (data: any) => {
+    const updatedInstructor = await prismaclient.instructor.update({
+        where: {
+            instructor_id: data.instructor_id
+        },
+        data: {
+            instructor_name: data.instructor_name,
+            qualification: data.qualification,
+            gender: data.gender,
+            experience: data.experience,
+            phone: data.phone,
+            status: data.status,
+            current_salary: data.current_salary,
+            email: data.email,
+            password: data.password,
+            user: {
+                update: {
+                    email: data.emailId, password: data.password,
+                }
+            },
+        }
+    });
+
+    return updatedInstructor;
+}
+
+
+export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor }

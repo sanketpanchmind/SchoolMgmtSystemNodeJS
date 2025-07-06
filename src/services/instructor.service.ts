@@ -8,5 +8,12 @@ const newInstructor = async (data: any) => {
     return await instructorRepository.createIntructors(data);
 }
 
+const deleteInstructor = async (instructor_id: any) => {
+    return await instructorRepository.deleteInstructor(instructor_id);
+}
 
-export default { getInstructor, newInstructor }
+const updateInstructor = async (data: any) => {
+    return await instructorRepository.updateInstructor(data);
+}
+
+export default { getInstructor, newInstructor, deleteInstructor, updateInstructor }
