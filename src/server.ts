@@ -6,6 +6,7 @@ import instructorRoutes from './routes/instructor.route';
 import classRoutes from './routes/class.route';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
+import loginRoutes from './routes/login.route'
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api', courseRoutes);
 app.use('/studentapi', studentRoutes);
 app.use('/instructorapi', instructorRoutes);
 app.use('/classapi', classRoutes);
+app.use('/loginapi', loginRoutes);
 
 // Start Server
 app.listen(PORT, () => {
