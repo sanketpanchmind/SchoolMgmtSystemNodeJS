@@ -9,7 +9,7 @@ const getAllInstructors = async (req: Request, res: Response) => {
         ...instructor,
         current_salary: instructor.current_salary.toString()
     }));
-    console.log("instructors --", updatedResult); // ✅ now this will print actual data
+    console.log("instructors --", updatedResult);
 
     res.status(200).json({ message: "Data Found", updatedResult });
     return;
@@ -88,4 +88,21 @@ const updateInstructorbyId = async (req: Request, res: Response) => {
 }
 
 
-export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId }
+const getClassbyInstructors = async (req: Request, res: Response) => {
+
+    try {
+        const instructorid = Number(req.query.instructor_id);
+        const result = await instructorService.getClassbyInstructorService(instructorid);
+        console.log(result);
+        res.status(200).json({ message: "Got", class: { result } });
+        return;
+    }
+    catch (e) {
+        res.status(200).json({ message: "Got", class: e });
+        console.log(e);
+        return;
+    }
+}
+
+
+export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId, getClassbyInstructors }

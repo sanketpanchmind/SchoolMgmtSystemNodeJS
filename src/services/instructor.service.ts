@@ -16,4 +16,8 @@ const updateInstructor = async (data: any) => {
     return await instructorRepository.updateInstructor(data);
 }
 
-export default { getInstructor, newInstructor, deleteInstructor, updateInstructor }
+const getClassbyInstructorService = async (instructor_id: any) => {
+    return await instructorRepository.getClassbyInstructor(instructor_id);
+}
+
+export default { getInstructor, newInstructor, deleteInstructor, updateInstructor, getClassbyInstructorService }

@@ -67,5 +67,12 @@ const updateInstructor = async (data: any) => {
     return updatedInstructor;
 }
 
+const getClassbyInstructor = async (instructor_id: any) => {
+    const result = await prismaclient.$queryRaw`
+    SELECT class_id, class_name FROM "Class" WHERE "instructor" = ${instructor_id}`;
+    return result;
+};
 
-export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor }
+
+
+export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor, getClassbyInstructor }
