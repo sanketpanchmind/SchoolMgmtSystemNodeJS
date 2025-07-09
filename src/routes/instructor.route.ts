@@ -11,6 +11,7 @@ router.post('/createInstructor', instructorController.createNewInstructor);
 router.delete('/deleteInstructor', instructorController.deleteInstructorbyId);
 router.put('/updateInstructor', instructorController.updateInstructorbyId);
 router.get('/classes', instructorController.getClassbyInstructors);
+router.get('/getStudentsbyClass', instructorController.getStudentsfromClassIdController);
 // router.get('/classes', verifyToken, instructorController.getClassbyInstructors);
 
 

@@ -71,8 +71,15 @@ const getClassbyInstructor = async (instructor_id: any) => {
     const result = await prismaclient.$queryRaw`
     SELECT class_id, class_name FROM "Class" WHERE "instructor" = ${instructor_id}`;
     return result;
-};
+}
 
+const getStudentsfromClassId = async (class_id: any) => {
 
+    const result = await prismaclient.$queryRaw
+        `select * from "Student" st join "Class" cl 
+        on st."classId" = cl.class_id
+        where cl.class_id = ${class_id} `;
+    return result;
+}
 
-export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor, getClassbyInstructor }
+export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor, getClassbyInstructor, getStudentsfromClassId }

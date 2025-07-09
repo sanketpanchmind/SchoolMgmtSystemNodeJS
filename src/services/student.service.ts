@@ -34,4 +34,9 @@ const updateStudentbyId = async (data: any) => {
     }
     return await studentRepository.updateStudentbyId(updatedData);
 }
-export default { getAllStudentData, registerStudentData, deleteStudent, updateStudentbyId };
+
+
+const getSubjectbyClassId = async (class_id: any) => {
+    return await studentRepository.getSubjectsfromClassId(class_id);
+}
+export default { getAllStudentData, registerStudentData, deleteStudent, updateStudentbyId, getSubjectbyClassId };

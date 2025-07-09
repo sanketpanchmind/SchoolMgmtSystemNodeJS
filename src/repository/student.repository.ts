@@ -67,4 +67,19 @@ const updateStudentbyId = async (data: any) => {
     return updatedStudent;
 }
 
-export default { getAllStudent, regsiterStudent, deleteStudentbyId, updateStudentbyId }
+const getSubjectsfromClassId = async (class_id: any) => {
+
+    const result = await prismaclient.$queryRaw`
+    select st.student_name, cl.class_name, cr.course_name 
+    from "Student" st join "Class" cl on 
+    st."classId" = cl.class_id
+    join "Course" cr on
+    cr.class_id = cl.class_id where cl.class_id = ${class_id}`;
+
+    return result;
+}
+
+
+
+
+export default { getAllStudent, regsiterStudent, deleteStudentbyId, updateStudentbyId, getSubjectsfromClassId }

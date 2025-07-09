@@ -61,4 +61,24 @@ const updateStudent = async (req: Request, res: Response) => {
     }
 }
 
-export default { getAllStudents, registerNewStudent, deleteStudentsbyId, updateStudent }
+
+
+const getSubjectbyClassIdController = async (req: Request, res: Response) => {
+
+    try {
+        const classId = Number(req.body.class_id);
+        console.log(classId, typeof (classId));
+        const result = await studentService.getSubjectbyClassId(classId);
+        console.log(result);
+        res.status(200).json({ message: "Record Fetched.", class: result });
+        return;
+    }
+    catch (e) {
+        res.status(400).json(e);
+        console.log(e)
+        return;
+    }
+}
+
+
+export default { getAllStudents, registerNewStudent, deleteStudentsbyId, updateStudent, getSubjectbyClassIdController }

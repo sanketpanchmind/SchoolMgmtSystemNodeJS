@@ -104,5 +104,21 @@ const getClassbyInstructors = async (req: Request, res: Response) => {
     }
 }
 
+const getStudentsfromClassIdController = async (req: Request, res: Response) => {
+    const classId = Number(req.query.class_id);
 
-export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId, getClassbyInstructors }
+    try {
+        const result = await instructorService.getStudentfromClassIdService(classId);
+        console.log(result);
+        res.status(200).json({ message: "Record Fetched.", class: result });
+        return;
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).json({ message: "Record Not Fetched.", class: e });
+        return;
+    }
+}
+
+
+export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId, getClassbyInstructors, getStudentsfromClassIdController }

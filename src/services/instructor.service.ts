@@ -20,4 +20,8 @@ const getClassbyInstructorService = async (instructor_id: any) => {
     return await instructorRepository.getClassbyInstructor(instructor_id);
 }
 
-export default { getInstructor, newInstructor, deleteInstructor, updateInstructor, getClassbyInstructorService }
+const getStudentfromClassIdService = async (class_id: any) => {
+    return await instructorRepository.getStudentsfromClassId(class_id);
+}
+
+export default { getInstructor, newInstructor, deleteInstructor, updateInstructor, getClassbyInstructorService, getStudentfromClassIdService }
