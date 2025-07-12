@@ -27,6 +27,20 @@ app.use('/instructorapi', instructorRoutes);
 app.use('/classapi', classRoutes);
 app.use('/loginapi', loginRoutes);
 
+
+
+// more
+/*
+--- Fees Management
+/payFees
+/getFeeStatus
+/generateReceipt
+
+--- Notifications
+Email notifications on class assignment or registration (use nodemailer)
+SMS notifications using Twilio (optional)
+*/
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`School Mgmt System.....${PORT}`);

@@ -1,4 +1,5 @@
 import studentRepository from '../repository/student.repository';
+import { sendEmail } from './email.service';
 
 const getAllStudentData = async () => {
     return await studentRepository.getAllStudent();
@@ -14,6 +15,10 @@ const registerStudentData = async (data: any) => {
         ...data,
         age: age
     }
+    await sendEmail(
+        updatedData.emailId, 'Welcome to our School',
+        `Hi ${updatedData.student_name}, your registration is Successfull !!!`
+    );
     return await studentRepository.regsiterStudent(updatedData);
 };
 

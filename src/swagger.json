@@ -1,277 +1,241 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "School Management System API",
     "version": "1.0.0",
-    "description": "API Documentation for School Management System"
+    "description": "API documentation for School Management System"
   },
-  "host": "localhost:5000",
-  "basePath": "/",
-  "schemes": ["http"],
   "paths": {
-    "/studentapi/getAllStudents": {
+    "/getAllStudents": {
       "get": {
         "summary": "Get all students",
         "responses": {
-          "200": { "description": "List of students" }
+          "200": {
+            "description": "List of students"
+          }
         }
       }
     },
-    "/studentapi/registerStudent": {
+    "/registerStudent": {
       "post": {
         "summary": "Register a new student",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "student",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "student_name": { "type": "string" },
-                "phone": { "type": "string" },
-                "address": { "type": "string" },
-                "date_of_birth": { "type": "string", "format": "date" },
-                "gender": { "type": "string" },
-                "age": { "type": "integer" },
-                "enrollment_date": { "type": "string", "format": "date" },
-                "emailId": { "type": "string" },
-                "password": { "type": "string" },
-                "class_id": { "type": "integer" }
-              }
-            }
-          }
-        ],
         "responses": {
-          "201": { "description": "Student registered successfully" }
+          "201": {
+            "description": "Student registered"
+          }
         }
       }
     },
-    "/studentapi/deleteStudentbyId": {
+    "/deleteStudentbyId": {
       "delete": {
         "summary": "Delete a student by ID",
         "parameters": [
           {
-            "name": "student_id",
+            "name": "id",
             "in": "query",
             "required": true,
-            "type": "integer"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "200": { "description": "Student deleted successfully" }
+          "200": {
+            "description": "Student deleted"
+          }
         }
       }
     },
-    "/studentapi/updateStudentbyId": {
+    "/updateStudentbyId": {
       "put": {
         "summary": "Update a student by ID",
-        "parameters": [
-          {
-            "name": "student_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "name": "student",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "student_name": { "type": "string" },
-                "phone": { "type": "string" },
-                "address": { "type": "string" },
-                "date_of_birth": { "type": "string", "format": "date" },
-                "gender": { "type": "string" },
-                "age": { "type": "integer" },
-                "enrollment_date": { "type": "string", "format": "date" },
-                "emailId": { "type": "string" },
-                "password": { "type": "string" },
-                "class_id": { "type": "integer" }
-              }
-            }
-          }
-        ],
         "responses": {
-          "200": { "description": "Student updated successfully" }
+          "200": {
+            "description": "Student updated"
+          }
         }
       }
     },
-    "/instructorapi/getInstructor": {
+    "/getSubjectsfromClassId": {
       "get": {
-        "summary": "Get All Instructors",
+        "summary": "Get subjects by class ID",
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
-          "200": { "description": "List of all instructors" }
+          "200": {
+            "description": "List of subjects"
+          }
         }
       }
     },
-    "/instructorapi/createInstructor": {
+    "/login": {
       "post": {
-        "summary": "Create a New Instructor",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "instructor",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "instructor_name": { "type": "string" },
-                "qualification": { "type": "string" },
-                "gender": { "type": "string" },
-                "experience": { "type": "number" },
-                "phone": { "type": "string" },
-                "status": { "type": "string" },
-                "current_salary": { "type": "string" },
-                "email": { "type": "string" },
-                "password": { "type": "string" }
-              },
-              "required": [
-                "instructor_name",
-                "qualification",
-                "gender",
-                "experience",
-                "phone",
-                "status",
-                "current_salary",
-                "email",
-                "password"
-              ]
-            }
-          }
-        ],
+        "summary": "Login",
         "responses": {
-          "201": { "description": "Instructor created successfully" }
-        }
-      }
-    },
-    "/instructorapi/deleteInstructor": {
-      "delete": {
-        "summary": "Delete an Instructor",
-        "parameters": [
-          {
-            "name": "instructor_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": { "description": "Instructor deleted successfully" }
-        }
-      }
-    },
-    "/instructorapi/updateInstructor": {
-      "put": {
-        "summary": "Update an Instructor",
-        "parameters": [
-          {
-            "name": "instructor_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
+          "200": {
+            "description": "Login success"
           },
-          {
-            "in": "body",
-            "name": "instructor",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "instructor_name": { "type": "string" },
-                "qualification": { "type": "string" },
-                "gender": { "type": "string" },
-                "experience": { "type": "number" },
-                "phone": { "type": "string" },
-                "status": { "type": "string" },
-                "current_salary": { "type": "string" },
-                "email": { "type": "string" },
-                "password": { "type": "string" }
-              }
-            }
+          "401": {
+            "description": "Unauthorized"
           }
-        ],
-        "responses": {
-          "200": { "description": "Instructor updated successfully" }
         }
       }
     },
-    "/courseapi/getAllCourses": {
+    "/getInstructor": {
       "get": {
-        "summary": "Get All Courses",
+        "summary": "Get all instructors",
         "responses": {
-          "200": { "description": "List of all courses" }
+          "200": {
+            "description": "List of instructors"
+          }
         }
       }
     },
-    "/courseapi/createCourse": {
+    "/createInstructor": {
       "post": {
-        "summary": "Create a New Course",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "course",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "course_name": { "type": "string" },
-                "description": { "type": "string" },
-                "class_id": { "type": "integer" }
-              },
-              "required": ["course_name", "description", "class_id"]
-            }
-          }
-        ],
+        "summary": "Create new instructor",
         "responses": {
-          "201": { "description": "Course created successfully" }
+          "201": {
+            "description": "Instructor created"
+          }
         }
       }
     },
-    "/courseapi/deleteCourse": {
+    "/deleteInstructor": {
       "delete": {
-        "summary": "Delete a Course",
+        "summary": "Delete instructor by ID",
         "parameters": [
           {
-            "name": "course_id",
+            "name": "id",
             "in": "query",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": { "description": "Course deleted successfully" }
-        }
-      }
-    },
-    "/courseapi/updateCourse": {
-      "put": {
-        "summary": "Update a Course",
-        "parameters": [
-          {
-            "name": "course_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "name": "course",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "course_name": { "type": "string" },
-                "description": { "type": "string" },
-                "class_id": { "type": "integer" }
-              }
+              "type": "string"
             }
           }
         ],
         "responses": {
-          "200": { "description": "Course updated successfully" }
+          "200": {
+            "description": "Instructor deleted"
+          }
+        }
+      }
+    },
+    "/updateInstructor": {
+      "put": {
+        "summary": "Update instructor by ID",
+        "responses": {
+          "200": {
+            "description": "Instructor updated"
+          }
+        }
+      }
+    },
+    "/classes": {
+      "get": {
+        "summary": "Get classes by instructor",
+        "responses": {
+          "200": {
+            "description": "List of classes"
+          }
+        }
+      }
+    },
+    "/getStudentsbyClass": {
+      "get": {
+        "summary": "Get students by class ID",
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of students"
+          }
+        }
+      }
+    },
+    "/getAllCourses": {
+      "get": {
+        "summary": "Get all courses",
+        "responses": {
+          "200": {
+            "description": "List of courses"
+          }
+        }
+      }
+    },
+    "/createCourse": {
+      "post": {
+        "summary": "Create a new course",
+        "responses": {
+          "201": {
+            "description": "Course created"
+          }
+        }
+      }
+    },
+    "/deleteCourse": {
+      "delete": {
+        "summary": "Delete course by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course deleted"
+          }
+        }
+      }
+    },
+    "/updateCourse": {
+      "put": {
+        "summary": "Update course by ID",
+        "responses": {
+          "200": {
+            "description": "Course updated"
+          }
+        }
+      }
+    },
+    "/getAllClasses": {
+      "get": {
+        "summary": "Get all classes",
+        "responses": {
+          "200": {
+            "description": "List of classes"
+          }
+        }
+      }
+    },
+    "/createClasses": {
+      "post": {
+        "summary": "Create new class",
+        "responses": {
+          "201": {
+            "description": "Class created"
+          }
         }
       }
     }

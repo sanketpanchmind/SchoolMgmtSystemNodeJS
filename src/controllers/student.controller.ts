@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import studentService from "../services/student.service";
 import { prismaclient } from "../prisma";
+import { sendEmail } from "../services/email.service";
 
 const getAllStudents = async (req: Request, res: Response) => {
 
@@ -14,6 +15,7 @@ const registerNewStudent = async (req: Request, res: Response) => {
     try {
         const data = req.body;
         const result = await studentService.registerStudentData(data);
+
         res.status(201).json({ message: "Data Recieved", data: result });
         return;
     }

@@ -25,7 +25,7 @@ const regsiterStudent = async (data: any) => {
                     email: data.emailId, password: data.password, role: 'student'
                 }
             },
-            class: { connect: { class_id: data.class_id } }
+            class: { connect: { class_id: data.classId } }
         },
 
     })
@@ -61,7 +61,7 @@ const updateStudentbyId = async (data: any) => {
                     email: data.emailId, password: data.password, role: 'student'
                 }
             },
-            class: { connect: { class_id: data.class_id } }
+            class: { connect: { class_id: data.classId } }
         },
     })
     return updatedStudent;
