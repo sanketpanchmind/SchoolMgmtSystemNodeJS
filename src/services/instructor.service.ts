@@ -1,10 +1,15 @@
 import instructorRepository from "../repository/instructor.repository";
+import { sendEmail } from "./email.service";
 
 
 const getInstructor = async () => {
     return await instructorRepository.getAllIntructors();
 }
 const newInstructor = async (data: any) => {
+    await sendEmail(
+        data.email, 'Welcome to our School',
+        `Hi ${data.instructor_name}, your registration is Successfull !!!`
+    );
     return await instructorRepository.createIntructors(data);
 }
 
