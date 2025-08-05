@@ -105,6 +105,10 @@ model Class {
 }
 
 // can write an api in instructor repo with selection of id & in student section pay fees form and hit the api
+
+// select ft.student_id,st.student_name, ft.payment_date, ft.payment_method, ft.amount, cl.class_name from public."Feestbl" ft join public."Class" cl on 
+// ft.class_id = cl.class_id join public."Student" st on 
+// ft.student_id = st.student_id;
 model Feestbl {
   fee_id         Int       @id @default(autoincrement())
   student_id     Int
