@@ -55,6 +55,8 @@ model Student {
   user            User    @relation(fields: [uid], references: [uid])
   Course          Course? @relation(fields: [courseCourse_id], references: [course_id])
   courseCourse_id Int?
+
+  fees Feestbl[]
 }
 
 model Instructor {
@@ -99,6 +101,35 @@ model Class {
 
   Student Student[]
   courses Course[]
+  fees    Feestbl[]
+}
+
+model Feestbl {
+  fee_id         Int       @id @default(autoincrement())
+  student_id     Int
+  class_id       Int
+  amount         Decimal   @db.Decimal(10, 2)
+  payment_date   DateTime?
+  due_date       DateTime
+  payment_method String? // "Cash", "Card", "Bank Transfer", etc.
+  status         FeeStatus
+  academic_year  String // e.g., "2023-2024"
+  semester       String? // "Spring", "Fall", etc. (if applicable)
+  description    String? // Optional notes
+  receipt_number String? // Auto-generated receipt ID
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @updatedAt
+
+  student Student @relation(fields: [student_id], references: [student_id])
+  class   Class   @relation(fields: [class_id], references: [class_id])
+}
+
+enum FeeStatus {
+  paid
+  pending
+  overdue
+  cancelled
+  partially_paid
 }
 
 enum Role {
