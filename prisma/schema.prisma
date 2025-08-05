@@ -104,6 +104,7 @@ model Class {
   fees    Feestbl[]
 }
 
+// can write an api in instructor repo with selection of id & in student section pay fees form and hit the api
 model Feestbl {
   fee_id         Int       @id @default(autoincrement())
   student_id     Int
