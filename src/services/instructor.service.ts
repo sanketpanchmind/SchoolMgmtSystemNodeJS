@@ -29,4 +29,7 @@ const getStudentfromClassIdService = async (class_id: any) => {
     return await instructorRepository.getStudentsfromClassId(class_id);
 }
 
-export default { getInstructor, newInstructor, deleteInstructor, updateInstructor, getClassbyInstructorService, getStudentfromClassIdService }
+const getFeesStatusbyClassId = async (class_id: any, status: any) => {
+    return await instructorRepository.getFeesStatusbyClassId(class_id, status);
+}
+export default { getInstructor, newInstructor, deleteInstructor, updateInstructor, getClassbyInstructorService, getStudentfromClassIdService, getFeesStatusbyClassId }

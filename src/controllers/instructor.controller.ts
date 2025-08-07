@@ -120,5 +120,20 @@ const getStudentsfromClassIdController = async (req: Request, res: Response) => 
     }
 }
 
+const getFeeStatusController = async (req: Request, res: Response) => {
+    const class_id = Number(req.query.class_id);
+    const status = String(req.query.status);
 
-export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId, getClassbyInstructors, getStudentsfromClassIdController }
+    try {
+        const result = await instructorService.getFeesStatusbyClassId(class_id, status);
+        console.log("fee status - ", result);
+        res.status(200).json({ message: "Record Fetched.", class: result });
+        return;
+    } catch (e) {
+        console.log(e);
+        res.status(400).json({ message: "Record Not Found.", class: e });
+        return;
+    }
+};
+
+export default { getAllInstructors, createNewInstructor, deleteInstructorbyId, updateInstructorbyId, getClassbyInstructors, getStudentsfromClassIdController, getFeeStatusController }

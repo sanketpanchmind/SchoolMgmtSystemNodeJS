@@ -72,7 +72,7 @@ const getSubjectbyClassIdController = async (req: Request, res: Response) => {
         console.log(classId, typeof (classId));
         const result = await studentService.getSubjectbyClassId(classId);
         console.log(result);
-        res.status(200).json({ message: "Record Fetched.", class: result });
+        res.status(200).json(result);
         return;
     }
     catch (e) {
@@ -83,4 +83,19 @@ const getSubjectbyClassIdController = async (req: Request, res: Response) => {
 }
 
 
-export default { getAllStudents, registerNewStudent, deleteStudentsbyId, updateStudent, getSubjectbyClassIdController }
+const payFeesbyStudIdController = async (req: Request, res: Response) => {
+    try {
+        const data = req.body;
+        const feesdata = await studentService.payFeesbyStudIdService(data);
+        console.log("fees id ====", feesdata);
+        res.status(200).json({ message: "Record Fetched", fees: feesdata });
+        return;
+    }
+    catch (e) {
+        res.status(400).json(e);
+        console.log(e)
+        return;
+    }
+}
+
+export default { getAllStudents, registerNewStudent, deleteStudentsbyId, updateStudent, getSubjectbyClassIdController, payFeesbyStudIdController }

@@ -82,4 +82,15 @@ const getStudentsfromClassId = async (class_id: any) => {
     return result;
 }
 
-export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor, getClassbyInstructor, getStudentsfromClassId }
+const getFeesStatusbyClassId = async (class_id: number, status: any) => {
+    const result = await prismaclient.feestbl.findMany({
+        where: {
+            class_id: class_id,
+            status: status
+        }
+    });
+    return result;
+}
+
+
+export default { getAllIntructors, createIntructors, deleteInstructor, updateInstructor, getClassbyInstructor, getStudentsfromClassId, getFeesStatusbyClassId }

@@ -12,7 +12,6 @@ router.delete('/deleteInstructor', instructorController.deleteInstructorbyId);
 router.put('/updateInstructor', instructorController.updateInstructorbyId);
 router.get('/classes', instructorController.getClassbyInstructors);
 router.get('/getStudentsbyClass', instructorController.getStudentsfromClassIdController);
-// router.get('/classes', verifyToken, instructorController.getClassbyInstructors);
-
+router.get('/feesstatus', instructorController.getFeeStatusController);
 
 export default router;

@@ -79,7 +79,50 @@ const getSubjectsfromClassId = async (class_id: any) => {
     return result;
 }
 
+const payFeesbyStudId = async (data: any) => {
+
+    const result = await prismaclient.feestbl.create({
+        data: {
+            student_id: data.student_id,
+            class_id: data.class_id,
+            amount: data.amount,
+            payment_date: data.payment_date,
+            due_date: data.due_date,
+            payment_method: data.payment_method,
+            status: data.status,
+            academic_year: data.academic_year,
+            semester: data.semester,
+            description: data.description,
+            receipt_number: data.receipt_number,
+
+            student: {
+                connect: {
+                    student_id: data.studentId  // from JSON body
+                }
+            },
+            class: {
+                connect: {
+                    class_id: data.classId     // from JSON body
+                }
+            }
+        }
+    })
+
+    return result;
 
 
 
-export default { getAllStudent, regsiterStudent, deleteStudentbyId, updateStudentbyId, getSubjectsfromClassId }
+    // const result = await prismaclient.$queryRaw`
+    //     select st.student_name, st."classId", ft.amount, ft.due_date 
+    //     from 
+    //     public."Student" st join public."Feestbl" ft
+    //     on 
+    //     st.student_id = ft.student_id and st."classId" = ft.class_id where ft.student_id = ${stud_id} and ft.class_id = ${class_id};
+    // `
+    // return result;
+}
+
+
+
+
+export default { getAllStudent, regsiterStudent, deleteStudentbyId, updateStudentbyId, getSubjectsfromClassId, payFeesbyStudId }
