@@ -83,12 +83,16 @@ const getStudentsfromClassId = async (class_id: any) => {
 }
 
 const getFeesStatusbyClassId = async (class_id: number, status: any) => {
-    const result = await prismaclient.feestbl.findMany({
-        where: {
-            class_id: class_id,
-            status: status
-        }
-    });
+    // const result = await prismaclient.feestbl.findMany({
+    //     where: {
+    //         class_id: class_id,
+    //         status: status
+    //     }
+    // });
+
+    const result = await prismaclient.$queryRaw`
+        select ft.student_id, ft.class_id, ft.amount, ft.payment_method, ft.status from public."Feestbl" ft where class_id = ${class_id} and status = ${status}:: "FeeStatus"; 
+    `
     return result;
 }
 
